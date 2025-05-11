@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление магазином</title>
+    <link rel="stylesheet" href={% static 'css/styles.css' %}>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="nav-buttons">
+                <a href="{% url 'login' %}">Войти</a>
+                <a href="{% url 'register' %}">Зарегистрироваться</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Управляйте своим магазином легко и эффективно!</h1>
+            <p>Система для управления инвентарем и заказами. Всё, что нужно для вашего магазина, в одном месте.</p>
+            <div class="benefits">
+                <h2>Преимущества:</h2>
+                <ul>
+                    <li>Простота в использовании.</li>
+                    <li>Высокая скорость работы.</li>
+                    <li>Автоматизация ключевых процессов.</li>
+                </ul>
+            </div>
+            <div class="start-button">
+                <a href="{% url 'dashboard' %}"class="btn">Начать работу</a>
+            </div> 
+        </div>
+    </main>
+</body>
+</html>

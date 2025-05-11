@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление товарами</title>
+    <link rel="stylesheet" href="{% static 'css/inventory.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+</head>
+<body>
+    <!-- Включение хедера -->
+    {% include "main/fragments/header.html" %}
+
+    <!-- Основной контент -->
+    <div class="container">
+        <h1>Управление товарами</h1>
+        <button class="button" onclick="openAddProductForm()">Добавить товар</button>
+
+        <!-- Таблица товаров -->
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Описание</th>
+                    <th>Категория</th>
+                    <th>Количество</th>
+                    <th>Цена закупки</th>
+                    <th>Цена продажи</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>
+                            {% if product.category %}
+                                {{ product.category.name }}
+                            {% else %}
+                                
+                            {% endif %}
+                        </td>
+                        <td>{{ product.stock_quantity }}</td>
+                        <td>{{ product.purchase_price|floatformat:2 }}</td>
+                        <td>{{ product.selling_price|floatformat:2 }}</td>
+                        <td>{% if product.stock_quantity > 10 %}В наличии{% elif product.stock_quantity > 0 %}Мало на складе{% else %}Нет в наличии{% endif %}</td>
+                        <td>
+                            <button class="button edit" onclick="editProduct({{ product.id }})">Редактировать</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Модальное окно для добавления/редактирования -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Добавить товар</h2>
+            <form id="product-form" method="POST" action="{% url 'add_product' %}">
+                {% csrf_token %}
+                <label for="product-name">Название</label>
+                <input type="text" id="product-name" name="product-name" required>
+                <label for="product-description">Описание</label>
+                <textarea id="product-description" name="product-description" rows="4"></textarea>
+                <label for="category">Категория:</label>
+                <select id="category" name="category">
+                    <option value="">Не выбрано</option>
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="purchase-price">Цена закупки</label>
+                <input type="number" id="purchase-price" name="purchase-price" required>
+                <label for="sale-price">Цена продажи</label>
+                <input type="number" id="sale-price" name="sale-price" required>
+                <button type="submit" class="button">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/inventory_script.js' %}"></script>
+</body>
+</html>

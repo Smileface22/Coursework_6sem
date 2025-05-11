@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Управление категориями</title>
+  <link rel="stylesheet" href="{% static 'css/category.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+</head>
+<body>
+{% include "main/fragments/header.html" %}
+
+<div class="container">
+  <h1>Управление категориями</h1>
+  <button class="button" onclick="openAddCategoryForm()">Добавить категорию</button>
+
+  <table class="categories-table">
+    <thead>
+    <tr>
+      <th>Название</th>
+      <th>Описание</th>
+      <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody id="categories-list">
+    {% for category in categories %}
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <button class="button edit" onclick="editCategory({{ category.id }})">Редактировать</button>
+          <button class="button delete" onclick="deleteCategory({{ category.id }})">Удалить</button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div id="category-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 id="modal-title">Добавить категорию</h2>
+    <form id="category-form">
+      <label for="category-name">Название категории</label>
+      <input type="text" id="category-name" name="name" required>
+      <label for="category-description">Описание</label>
+      <textarea id="category-description" name="description"></textarea>
+      <button type="submit" class="button">Сохранить</button>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'js/category_script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления</title>
+    <link rel="stylesheet" href={% static 'css/dashboard.css' %}>
+
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <div class="logo">Мой Магазин</div>
+    <div class="nav-buttons">
+        <a href="{% url 'logout' %}">Выйти</a>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <!-- Key Metrics -->
+    <div class="metrics">
+        <div class="card">
+            <h2>Текущие запасы</h2>
+            <p id="current-stock">0 товаров</p>
+            <p id="low-stock" style="color: red;">0 товаров с низким уровнем</p>
+        </div>
+        <div class="card">
+            <h2>Статус заказов</h2>
+            <p id="completed-orders">Выполнено: 0</p>
+            <p id="processing-orders">В процессе: 0</p>
+        </div>
+        <div class="card">
+            <h2>Количество заказов</h2>
+            <p id="orders-today">Заказы за сегодня: 0</p>
+            <p id="orders-this-month">Заказы за месяц: 0</p>
+        </div>
+    </div>
+    <!-- Quick Actions -->
+    <div class="actions">
+        <div class="card">
+            <h2>Управление заказами</h2>
+            <a href="{% url 'orders' %}" class="button">Перейти</a>
+        </div>
+        <div class="card">
+            <h2>Управление товарами</h2>
+            <a href="{% url 'inventory' %}" class="button">Перейти</a>
+        </div>
+        <div class="card">
+            <h2>Управление категориями</h2>
+            <a href="{% url 'category_list' %}" class="button">Перейти</a>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{% static 'js/dashboard_script.js' %}"> </script>
+</html>
