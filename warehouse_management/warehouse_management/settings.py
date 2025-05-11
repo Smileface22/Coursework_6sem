@@ -16,8 +16,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', cast=bool)
+SECRET_KEY = "django-insecure-)*zcc!$x48(vp@iz1jswm&9px6bdbv9skc_k0bx5#_gc04&^_h"
+DEBUG = True
 ALLOWED_HOSTS = []
 
 
@@ -69,11 +69,11 @@ WSGI_APPLICATION = 'warehouse_management.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'NAME': "coursework6sem",
+        'USER': "coursework6sem_user",
+        'PASSWORD': "d2kLk3ZFwgyDWkYf6dQloVQtwIH6xKoa",
+        'HOST': "dpg-d0ghkhadbo4c73bdh2pg-a.oregon-postgres.render.com",
+        'PORT': 5432,
     }
 }
 
@@ -114,10 +114,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-
-STATIC_URL = '/staticfiles/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = '/static/'
+# STATIC_URL = '/staticfiles/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
