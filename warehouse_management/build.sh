@@ -1,5 +1,5 @@
 # Install dependencies with --no-cache-dir to reduce size
-pip3 install --no-cache-dir -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 python3 manage.py makemigrations
 python3 manage.py migrate
