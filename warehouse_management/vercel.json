@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
         {
-            "src": "warehouse_management/warehouse_management/wsgi.py",
+            "src": "warehouse_management/wsgi.py",
             "use": "@vercel/python",
             "config": {
                 "maxLambdaSize": "15mb",
@@ -24,7 +24,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "warehouse_management/warehouse_management/wsgi.py"
+            "dest": "warehouse_management/wsgi.py"
         }
     ]
 }
