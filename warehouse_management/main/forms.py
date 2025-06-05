@@ -6,7 +6,12 @@ from .models import Product
 from .models import Order
 
 class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'placeholder': 'Почта', 'class': 'form-control'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Пароль', 'class': 'form-control'})
+    )
 
     class Meta:
         model = User

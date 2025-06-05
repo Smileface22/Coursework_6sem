@@ -238,7 +238,7 @@ def create_order(request):
             user=request.user,
             total_amount=total_amount,
             status='Новый',
-            order_date=datetime.today().date(),  # Здесь можно поставить актуальную дату или передавать из формы
+            order_date=datetime.today().date(),  
         )
         
         for product_id, quantity in zip(product_ids, quantities):
